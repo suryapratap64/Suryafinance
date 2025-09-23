@@ -1,5 +1,27 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 
+// Supabase schema.ts Note (Short Version)
+
+// schema.ts is optional; currently calls non-existent RPCs (create_securities_table / setup_rls) → will fail as-is.
+
+// Recommended approach: pick one method to avoid conflicts:
+
+// Preferred: Use SQL migration files + migrationRunner; remove or archive schema.ts.
+
+// Alternative: Keep schema.ts but convert its functions to call exec_sql or use a direct pg Pool.
+
+// Why: Running both migrations and schema.ts may duplicate table creation; migrationRunner via exec_sql is canonical.
+
+// Gotchas:
+
+// exec_sql must exist before calling adminClient.rpc("exec_sql").
+
+// Execute whole SQL atomically if using $$ functions.
+
+// Avoid accidental runs by removing/archive schema.ts if using migrations.
+
+// ✅ Next step: choose either remove/archive schema.ts or convert it to use exec_sql.
+
 export const createTables = async (adminClient: SupabaseClient) => {
   try {
     // Create securities_master table

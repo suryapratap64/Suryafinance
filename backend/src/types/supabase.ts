@@ -106,3 +106,12 @@ export interface Database {
     };
   };
 }
+
+// 🔑 Supabase Types File (src/types/supabase.ts) — Revision Notes
+
+// Migrations don’t need it → runtime SQL + migration runner work fine without.
+
+// TypeScript build does need it → if imports exist, removing will break build.
+
+// Best practice → keep file (harmless + helpful).
+
