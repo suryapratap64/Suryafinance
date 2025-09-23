@@ -1,0 +1,39 @@
+// // Import Bootstrap from node_modules
+// @import "../../node_modules/bootstrap/scss/bootstrap";
+// @import "bootstrap/scss/bootstrap";
+
+
+// // Custom styles
+// .card {
+//   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+//   border-radius: 0.5rem;
+// }
+
+// // Table styles
+// .table {
+//   margin-bottom: 0;
+
+//   thead th {
+//     font-weight: 600;
+//     text-transform: uppercase;
+//     font-size: 0.75rem;
+//     letter-spacing: 0.025em;
+//     background-color: #f8f9fa;
+//   }
+
+//   // Use Bootstrap's built-in table variants
+//   @each $color, $value in $theme-colors {
+//     &.table-#{$color} {
+//       @extend .table-#{$color};
+//     }
+//   }
+// }
+
+// .table-hover tbody tr:hover {
+//   background-color: rgba($primary, 0.04);
+// }
+
+// .badge {
+//   font-weight: 500;
+//   padding: 0.35em 0.65em;
+// }

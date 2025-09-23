@@ -1,0 +1,12 @@
+// const path = require("path");
+
+// module.exports = {
+//   config: path.resolve("src/config/config.ts"),
+//   "models-path": path.resolve("src/models"),
+//   "seeders-path": path.resolve("src/seeders"),
+//   "migrations-source-path": path.resolve("src/migrations"),
+//   "migrations-compiled-path": path.resolve("dist/migrations"),
+// };
+// ✅ So in short:
+// This file customizes Sequelize CLI paths for a TypeScript + Sequelize project.
+// Without it, Sequelize would look in default folders (models, migrations, etc. in root).

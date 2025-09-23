@@ -1,0 +1,106 @@
+// // Table variant mixin
+// @mixin table-variant($state, $background) {
+//   .table-#{$state} {
+//     $color: color-contrast(opaque($body-bg, $background));
+//     $hover-bg: mix($color, $background, percentage($table-hover-bg-factor));
+//     $striped-bg: mix($color, $background, percentage($table-striped-bg-factor));
+//     $active-bg: mix($color, $background, percentage($table-active-bg-factor));
+//     $table-border-color: mix($color, $background, percentage($table-border-factor));
+
+//     --#{$prefix}table-color: #{$color};
+//     --#{$prefix}table-bg: #{$background};
+//     --#{$prefix}table-border-color: #{$table-border-color};
+//     --#{$prefix}table-striped-bg: #{$striped-bg};
+//     --#{$prefix}table-striped-color: #{color-contrast($striped-bg)};
+//     --#{$prefix}table-active-bg: #{$active-bg};
+//     --#{$prefix}table-active-color: #{color-contrast($active-bg)};
+//     --#{$prefix}table-hover-bg: #{$hover-bg};
+//     --#{$prefix}table-hover-color: #{color-contrast($hover-bg)};
+
+//     color: var(--#{$prefix}table-color);
+//     border-color: var(--#{$prefix}table-border-color);
+//   }
+// }
+
+// // Custom table styles
+// .table {
+//   --#{$prefix}table-bg: #{$table-bg};
+//   --#{$prefix}table-color: #{$table-color};
+//   --#{$prefix}table-border-color: #{$table-border-color};
+//   --#{$prefix}table-accent-bg: #{$table-accent-bg};
+//   --#{$prefix}table-striped-color: #{$table-striped-color};
+//   --#{$prefix}table-striped-bg: #{$table-striped-bg};
+//   --#{$prefix}table-active-color: #{$table-active-color};
+//   --#{$prefix}table-active-bg: #{$table-active-bg};
+//   --#{$prefix}table-hover-color: #{$table-hover-color};
+//   --#{$prefix}table-hover-bg: #{$table-hover-bg};
+
+//   width: 100%;
+//   margin-bottom: $spacer;
+//   vertical-align: $table-cell-vertical-align;
+//   border-color: var(--#{$prefix}table-border-color);
+// }
+
+// // Table variants
+// @include table-variant("primary", $primary);
+// @include table-variant("secondary", $secondary);
+// @include table-variant("success", $success);
+// @include table-variant("info", $info);
+// @include table-variant("warning", $warning);
+// @include table-variant("danger", $danger);
+// @include table-variant("light", $light);
+// @include table-variant("dark", $dark);
+
+// // Responsive tables
+// .table-responsive {
+//   @each $breakpoint in map-keys($grid-breakpoints) {
+//     $next: breakpoint-next($breakpoint, $grid-breakpoints);
+//     $infix: breakpoint-infix($next, $grid-breakpoints);
+
+//     &#{$infix} {
+//       @include media-breakpoint-down($next) {
+//         display: block;
+//         width: 100%;
+//         overflow-x: auto;
+//         -webkit-overflow-scrolling: touch;
+//         -ms-overflow-style: -ms-autohiding-scrollbar;
+//       }
+//     }
+//   }
+// }
+
+// // Custom table styles for your application
+// .table-custom {
+//   thead {
+//     th {
+//       background-color: $gray-100;
+//       border-bottom-width: 1px;
+//       font-weight: 600;
+//       text-transform: uppercase;
+//       font-size: 0.75rem;
+//       letter-spacing: 0.025em;
+//     }
+//   }
+
+//   tbody {
+//     tr {
+//       &:hover {
+//         background-color: rgba($primary, 0.04);
+//       }
+//     }
+
+//     td {
+//       vertical-align: middle;
+//       padding: 1rem 0.75rem;
+//     }
+//   }
+
+//   &.table-bordered {
+//     border-color: $gray-200;
+
+//     th,
+//     td {
+//       border-color: $gray-200;
+//     }
+//   }
+// }
