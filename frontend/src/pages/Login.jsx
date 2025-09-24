@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Eye, EyeOff, Mail, Lock, TrendingUp, Shield, Zap } from "lucide-react";
 import { useApp } from "../context/AppContext";
 import { Link, useNavigate } from "react-router-dom";
-import { supabase } from "../lib/supabaseClient";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +10,7 @@ const Login = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
 
   const { login, authLoading, error } = useApp();
@@ -44,16 +44,27 @@ const Login = () => {
     e.preventDefault();
     if (!validateForm()) return;
 
+    // Clear previous field errors
+    setErrors({});
+    setIsSubmitting(true);
+
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const result = await login({
         email: formData.email,
         password: formData.password,
       });
 
-      if (error) throw error;
-      navigate("/dashboard");
+      if (result && result.success) {
+        navigate("/dashboard");
+        return;
+      }
+
+      setErrors({ general: result?.error || "Login failed" });
     } catch (err) {
-      setErrors({ general: err.message });
+      console.error("Login threw:", err);
+      setErrors({ general: err?.message || "Login failed" });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -245,10 +256,10 @@ const Login = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              disabled={authLoading}
+              disabled={authLoading || isSubmitting}
               className="w-full py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900 transition-all duration-200 shadow-lg hover:shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {authLoading ? (
+              {authLoading || isSubmitting ? (
                 <div className="flex items-center justify-center space-x-2">
                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                   <span>Signing in...</span>

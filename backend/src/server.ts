@@ -12,8 +12,10 @@ import { startScheduledJobs } from "./jobs/scheduledJobs";
 import { AllRoutes } from "./router";
 import { Config } from "./config";
 import { runMigrations } from "./migrations/migrationRunner";
+import path from "path";
 
 const numCPUs = availableParallelism();
+const __dirname = path.resolve();
 
 async function createApp() {
   const app = express();
@@ -37,6 +39,13 @@ async function createApp() {
 
   // Attach routes
   AllRoutes.forEach((route) => app.use(route.path, route.handler));
+  
+  app.use(express.static(path.join(__dirname, "/frontend/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+});
+
+
 
   return app;
 }

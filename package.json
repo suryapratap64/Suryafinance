@@ -4,8 +4,8 @@
   "description": "",
   "main": "dist/server.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
-    "build": "npx tsc",
+    "dev": "tsx watch backend/src/server.ts",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend ",
     "start": "node dist/server.js"
   },
   "keywords": [],
