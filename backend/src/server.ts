@@ -39,12 +39,11 @@ async function createApp() {
 
   // Attach routes
   AllRoutes.forEach((route) => app.use(route.path, route.handler));
-  
-  app.use(express.static(path.join(__dirname, "/frontend/dist")));
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
-});
 
+app.use(express.static(path.join(__dirname, "public")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 
   return app;
